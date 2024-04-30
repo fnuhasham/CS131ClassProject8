@@ -1,0 +1,49 @@
+QUESTION ONE: Between the different streaming platforms, what are the average (Rotten Tomato) ratings?
+
+Command for Disney+: awk -F',' '$10 == 1 && $6 != "" {sum += $6; count++} END {if (count > 0) print "Average Rotten Tomatoes rating for Disney+:", sum/count; else print "No data found for Disney+"}' MoviesOnStreamingPlatforms.csv
+
+Average Rotten Tomatoes rating for Disney+: 58.7125
+
+Command for Netflix: awk -F',' '$7 == 1 && $6 != "" {sum += $6; count++} END {if (count > 0) print "Average Rotten Tomatoes rating for Netflix:", sum/count; else print "No data found for Netflix"}' MoviesOnStreamingPlatforms.csv
+
+Average Rotten Tomatoes rating for Netflix: 54.5087
+
+Command for Prime Video: awk -F',' '$8 == 1 && $6 != "" {sum += $6; count++} END {if (count > 0) print "Average Rotten Tomatoes rating for Prime Video:", sum/count; else print "No data found for Prime Video"}' MoviesOnStreamingPlatforms.csv
+
+Average Rotten Tomatoes rating for Prime Video: 59.0722
+
+Command for Hulu: awk -F',' '$9 == 1 && $6 != "" {sum += $6; count++} END {if (count > 0) print "Average Rotten Tomatoes rating for Hulu:", sum/count; else print "No data found for Hulu"}' MoviesOnStreamingPlatforms.csv
+
+Average Rotten Tomatoes rating for Hulu: 53.7744
+
+QUESTION TWO: What is are the age group distributions for movies on the different streaming platforms?
+
+Command for Netflix: awk -F',' '$7 == 1 {if ($5 == "all") all++; else if ($5 == "18+") above_18++; else below_18++} END {print "Netflix movies count by age range:"; print "All ages:", all; print "18+:", above_18; print "Below 18:", below_18; if (all >= above_18 && all >= below_18) print "\nNetflix has more movies for all ages"; else if (above_18 >= all && above_18 >= below_18) print "\nNetflix has more movies for 18+"; else print "\nNetflix has more movies for below 18"}' MoviesOnStreamingPlatforms.csv
+
+Netflix movies count by age range:
+All ages: 141
+18+: 855
+Below 18: 2629
+
+Command for Hulu: awk -F',' '$8 == 1 {if ($5 == "all") all++; else if ($5 == "18+") above_18++; else below_18++} END {print "Hulu movies count by age range:"; print "All ages:", all; print "18+:", above_18; print "Below 18:", below_18; if (all >= above_18 && all >= below_18) print "\nHulu has more movies for all ages"; else if (above_18 >= all && above_18 >= below_18) print "\nHulu has more movies for 18+"; else print "\nHulu has more movies for below 18"}' MoviesOnStreamingPlatforms.csv
+
+Hulu movies count by age range:
+All ages: 34
+18+: 380
+Below 18: 684
+
+Command for Prime Video: awk -F',' '$9 == 1 {if ($5 == "all") all++; else if ($5 == "18+") above_18++; else below_18++} END {print "Prime Video movies count by age range:"; print "All ages:", all; print "18+:", above_18; print "Below 18:", below_18; if (all >= above_18 && all >= below_18) print "\nPrime Video has more movies for all ages"; else if (above_18 >= all && above_18 >= below_18) print "\nPrime Video has more movies for 18+"; else print "\nPrime Video has more movies for below 18"}' MoviesOnStreamingPlatforms.csv
+
+Prime Video movies count by age range:
+All ages: 154
+18+: 1078
+Below 18: 2835
+
+Command for Disney+: awk -F',' '$10 == 1 {if ($5 == "all") all++; else if ($5 == "18+") above_18++; else below_18++} END {print "Disney+ movies count by age range:"; print "All ages:", all; print "18+:", above_18; print "Below 18:", below_18; if (all >= above_18 && all >= below_18) print "\nDisney+ has more movies for all ages"; else if (above_18 >= all && above_18 >= below_18) print "\nDisney+ has more movies for 18+"; else print "\nDisney+ has more movies for below 18"}' MoviesOnStreamingPlatforms.csv
+
+Disney+ movies count by age range:
+All ages: 363
+18+: 3
+Below 18: 600
+
+All streaming platforms (4) have the most movies rated below the age of 18.
